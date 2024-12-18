@@ -1,0 +1,488 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #ffffff; */
+}
+
+/*Navigation */
+
+/* Main Content */
+
+main {
+  background-color: #ffa405;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  text-align: center;
+  /* background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg); */
+}
+
+section {
+  padding: 15px;
+  margin: 20px;
+}
+
+/* welcome */
+/* Welcome Quote Styling */
+.container {
+  /* background: #f8f9fa; */
+  background-color: black;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  /* opacity: 0.7; */
+}
+.container h2{
+  color: #ffa405;
+}
+
+.container p{
+  color: #ff054c;
+}
+
+.container:hover {
+  background: #f8f9face;
+  /* background-color: #ffa305c1; */
+  color: black;
+  /* opacity: 0.7; */
+  opacity: 0.85;
+  border: 0.5px solid black;
+
+}
+
+h2 {
+  color: #212529;
+  font-weight: bold;
+}
+
+p.lead {
+  font-style: italic;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Dynamic fixed Block  */
+.fixed-effect {
+  display: inline-block;
+  max-width: 300px;
+  height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  color: #ff5722;
+  line-height: 1.5em;
+  /* background-color: rgb(255, 145, 0); */
+  /* border: 2px solid black; */
+}
+
+/* Welcome Dynamic Effect section starts */
+#dynamic-text {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+/* Menu Dynamic Effect  */
+#dynamic-menu-text {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+
+
+/* Menu  */
+/* General Container Styling */
+#menu {
+  /* background-color: #e5d5be; */
+  /* background-color: #f9f3e5; */
+  padding: 50px 0;
+  width: 100%;
+  border-radius: 15px;
+  /* margin-top: -22%; */
+  /* border: 2px solid red; */
+  /* opacity: 0.87;  */
+  /* opacity: 0.9; */
+}
+
+
+#menu h2 {
+  font-weight: bold;
+  color: #333;
+  background-color: rgba(255, 0, 0);
+  /* background-color: #ffa405; */
+
+  /* display: inline; */
+}
+
+#menu p {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Menu Grid Section */
+#menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Each Menu Category */
+#menu .col-md-4 {
+  /* background: #fff; */
+  /* background-color: #efb95a; */
+  background-color: black;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 15px;
+  /* opacity: 1 !important;  */
+}
+
+/* Hover Effects for Each Category */
+#menu .col-md-4:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  /* background-color: antiquewhite; */
+  opacity: 0.95;
+
+}
+
+/* Heading Colors for Each Category */
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+/* Menu List Items */
+#menu .list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+#menu .list-unstyled li {
+  font-weight: 500;
+  font-size: 18px;
+  /* color: #555; */
+  color: white;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+/* Hover Effect on Menu Items */
+#menu .list-unstyled li:hover {
+  /* color: #007bff; */
+  /* color: #17a2b8; */
+  color: #0ac5e2
+}
+
+/* Add a subtle transition effect */
+#menu .list-unstyled li::before {
+  content: "• ";
+  color: #007bff;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* Media Query for Better Responsiveness */
+@media (max-width: 768px) {
+  #menu .col-md-4 {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* Order now section */
+.order-section {
+  padding: 40px 20px;
+  /* text-align: center; */
+  /* background-color: #f8f9fa; */
+  /* border-top: 2px solid #ddd; */
+  border-radius: 10px;
+  background-color: #000000;
+  color: white;
+  border: 0.5px solid #000000; 
+
+  /* width: fit-content; */
+  /* margin-left: 23%; */
+  .btn{
+    background-color: #ffa405;
+    color: black;
+  }
+}
+
+/* Hover on Order now section */
+.order-section:hover {
+  background: #f8f9face;
+  color: black;
+  border-radius: 15px;
+  opacity: 0.9;
+  .btn{
+    background-color: #28a745;
+  }
+}
+
+.order-section h2 {
+  color: #ffa405;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.order-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.order-section .btn {
+  font-size: 1.2rem;
+}
+
+/* gallery */
+.gl{
+  /* border: 0.5px solid #ccc;  */
+  border: 0.5px solid #000000; 
+  padding: 20px; 
+  /* background-color: antiquewhite;  */
+  border-radius: 5px;
+   /* opacity: 0.8; */
+  background-color: #000000;
+  color: white;
+}
+.gl h2{
+  color: #ffa405;
+}
+
+.gl:hover{
+  /* border: 1.2px solid #000000;  */
+  padding: 20px; 
+  background-color: antiquewhite; 
+  border-radius: 5px; opacity: 0.85;
+  color: red;
+}
+
+
+.carousel-item img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 300px;
+  }
+}
+
+/* About us  */
+/* Optional: For visual clarity */
+#about-us {
+  /* background-color: #f9f3e5; */
+  background-color: #000000;
+  padding: 30px;
+  border-radius: 10px;
+  /* opacity: 0.8; */
+  color: white;
+}
+.about h2{
+  color: #ffa405;
+}
+.about h3{
+  color: #ffa405;
+}
+
+#about-us:hover {
+  background-color: #f9f3e5b8;
+  /* background-color: #00000060; */
+  padding: 30px;
+  border-radius: 15px;
+  opacity: 0.9;
+  color: black;
+}
+
+/* h2,
+h3 {
+  color: #444;
+} */
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Contact  */
+#contact {
+  /* background-color: #f9f9f9; */
+  padding: 30px;
+  border-radius: 5px;
+  /* opacity: 0.9; */
+  background-color: #000000;
+  color: #ffa405;
+}
+#contact:hover {
+  /* background-color: #f9f9f9; */
+  background-color: #f9f3e5b8;
+
+
+  color: black;
+}
+
+a.text-primary {
+  font-weight: bold;
+}
+
+
+#contact .btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+#contact .btn:hover {
+  transform: scale(1.05);
+}
+
+#contact .desktop-btn {
+  width: 220px;
+  /* Set a fixed width for buttons */
+  padding: 15px 20px;
+  /* Adjust padding for better proportions */
+  transition: all 0.3s ease-in-out;
+}
+
+#contact .desktop-btn:hover {
+  transform: scale(1.05);
+  /* Slight zoom effect on hover */
+}
+
+@media (max-width: 768px) {
+  #contact .btn {
+    font-size: 14px;
+    /* Slightly smaller font for mobile */
+    padding: 8px 12px;
+    /* Adjust padding for better fit */
+    width: 100%;
+    /* Stack buttons vertically */
+  }
+
+  #contact .desktop-btn {
+    width: 100%;
+    /* Full width for smaller screens */
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+/* Footer */
+footer {
+  /* background-color: #212121; */
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  opacity: 0.5;
+  /* Start with transparency */
+  transition: opacity 0.5s ease;
+  /* Smooth transition for opacity */
+}
+
+/* Back to Top Button */
+#backToTopBtn {
+  position: fixed;
+  bottom: 80px;
+  /* Place it above the footer */
+  right: 20px;
+  display: none;
+  /* Initially hidden */
+  z-index: 1000;
+  border-radius: 50%;
+  padding: 10px 15px;
+}
+
+/* Bottom Message */
+#bottomMessage {
+  position: fixed;
+  bottom: 40px;
+  /* Above the back-to-top button */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.my-4 {
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  footer {
+    /* height: auto; */
+    height: 55px;
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  #backToTopBtn {
+    bottom: 100px; /* Adjust for smaller screens */
+  }
+
+  #bottomMessage {
+    bottom: 40px; /* Ensure it doesn't overlap with the button */
+  }
+}
