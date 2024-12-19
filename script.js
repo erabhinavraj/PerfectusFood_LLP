@@ -510,10 +510,10 @@ const menuData = [
     colorClass: "text-warning",
     subcategories: {
       NonVeg: [
-        { name: "Chicken Leg Thai Half", price: 109 },
-        { name: "Chicken Leg Thai Full", price: 139 },
-        { name: "Chicken Breast Half", price: 109 },
-        { name: "Chicken Breast Full", price: 139 },
+        { name: "Chicken Leg Thai Classic", price: 109 },
+        { name: "Chicken Leg Thai Signature", price: 139 },
+        { name: "Chicken Breast Classic", price: 109 },
+        { name: "Chicken Breast Signature", price: 139 },
       ],
     },
   },
@@ -570,26 +570,50 @@ function populateMenu() {
 
       // Populate items for subcategory on line 192:- ${item.name} - ₹${item.price}
 
+      // subItems.forEach((item) => {
+      //   const li = document.createElement("li");
+      //   li.innerHTML = `
+      //     ${item.name} - ₹${item.price}
+      //     <span id="count-${item.name.replace(
+      //     /\s+/g,
+      //     ""
+      //   )}" class="badge bg-primary ms-2">0</span>
+      //     <button class="btn btn-sm btn-success ms-2"
+      //       onclick="addToCart('${item.name}', ${item.price
+      //     }, 'count-${item.name.replace(/\s+/g, "")}')">
+      //       <i class="bi bi-plus"></i>
+      //     </button>
+      //     <button class="btn btn-sm btn-warning ms-2"
+      //       onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
+      //       <i class="bi bi-dash"></i>
+      //     </button>
+      //   `;
+      //   ul.appendChild(li);
+      // });
+
+      // This is for +0- style 
+
       subItems.forEach((item) => {
         const li = document.createElement("li");
+        li.className = "menu-item d-flex justify-content-between align-items-center";
         li.innerHTML = `
-          ${item.name} - ₹${item.price}
-          <span id="count-${item.name.replace(
-          /\s+/g,
-          ""
-        )}" class="badge bg-primary ms-2">0</span>
-          <button class="btn btn-sm btn-success ms-2"
-            onclick="addToCart('${item.name}', ${item.price
-          }, 'count-${item.name.replace(/\s+/g, "")}')">
-            <i class="bi bi-plus"></i>
-          </button>
-          <button class="btn btn-sm btn-warning ms-2"
-            onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
-            <i class="bi bi-dash"></i>
-          </button>
+          <span class="item-text">${item.name} - ₹${item.price}</span>
+          <span class="menu-controls">
+            <button class="btn btn-sm btn-success ms-2"
+              onclick="addToCart('${item.name}', ${item.price}, 'count-${item.name.replace(/\s+/g, "")}')">
+              <i class="bi bi-plus"></i>
+            </button>
+            <span id="count-${item.name.replace(/\s+/g, "")}" class="badge bg-primary ms-2">0</span>
+            <button class="btn btn-sm btn-warning ms-2"
+              onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
+              <i class="bi bi-dash"></i>
+            </button>
+          </span>
         `;
         ul.appendChild(li);
       });
+      
+      
 
       subCategoryDiv.appendChild(ul);
       categoryDiv.appendChild(subCategoryDiv);
@@ -606,7 +630,9 @@ function populateMenu() {
     // Append main category to the menu grid
     menuGrid.appendChild(categoryDiv);
   });
+
 }
+
 // Function to remove item from the menu
 function removeFromMenu(itemName, buttonId) {
   const existingItem = cart.find((item) => item.name === itemName);
@@ -619,7 +645,7 @@ function removeFromMenu(itemName, buttonId) {
     }
     updateMenuCount(itemName, buttonId);
     updateCartUI();
-    alert(`${itemName} has been removed from your cart.`);
+    // alert(`${itemName} has been removed from your cart.`);
   } else {
     alert(`${itemName} is not in your cart.`);
   }
@@ -655,7 +681,7 @@ function addToCart(itemName, itemPrice, buttonId) {
   updateMenuCount(itemName, buttonId);
 
   updateCartUI(); // Update the cart view
-  alert(`${itemName} has been added to your cart.`);
+  // alert(`${itemName} has been added to your cart.`);
 }
 
 // Update Menu Count Function
@@ -758,11 +784,13 @@ function showDeliveryModal() {
 }
 
 // Form validation and order placement
+// Form validation and order placement
 function placeOrder() {
   // Get values from the form
   const receiverName = document.getElementById("receiverName").value;
   const mobileNumber = document.getElementById("mobileNumber").value;
   const deliveryAddress = document.getElementById("deliveryAddress").value;
+  const couponCode = document.getElementById("offers").value.trim(); // Get the coupon code
 
   // Check if all fields are filled
   if (receiverName === "" || mobileNumber === "" || deliveryAddress === "") {
@@ -786,18 +814,46 @@ function placeOrder() {
     )
     .join("\n");
 
-  const totalAmount = cart.reduce(
+  let totalAmount = cart.reduce(
     (sum, item) => sum + item.price * item.count,
     0
   );
 
+  console.log("Total amount before discount:", totalAmount); // Debugging step
+
+  // Coupon Code Logic
+  let discount = 0;
+
+  // Apply coupon logic only if cart value is above 200
+  if (couponCode === "Welcome10" && totalAmount >= 200) {
+    discount = totalAmount * 0.10; // 10% discount
+    if (discount > 100) {
+      discount = 100; // Maximum discount is ₹100
+    }
+    alert(`Coupon applied! You get ₹${discount} off.`);
+  } else if (couponCode === "Welcome10" && totalAmount < 200) {
+    alert("Coupon code is valid but the minimum cart total for this coupon is ₹200.");
+  }
+
+  // Apply discount to the total amount
+  const discountedAmount = totalAmount - discount;
+
+  // Round the amounts
+  const roundedTotalAmount = Math.round(totalAmount); // Round total amount to nearest integer
+  const roundedDiscount = Math.round(discount); // Round discount to nearest integer
+  const roundedDiscountedAmount = Math.round(discountedAmount); // Round discounted amount to nearest integer
+
+  console.log("Total amount after discount:", roundedDiscountedAmount); // Debugging step
+
   // Add the custom message at the beginning
   const message = encodeURIComponent(`
-        Here is my order details:-
+        Here is my order details:- 
         
         ${orderDetails}
-
-        Total: ₹${totalAmount}
+        
+        Total Amount: ₹${roundedTotalAmount} 
+        Discount: ₹${roundedDiscount}
+        Payable Amount: ₹${roundedDiscountedAmount}
         
         Receiver's Name: ${receiverName}
         Mobile Number: ${mobileNumber}
@@ -827,6 +883,8 @@ document.getElementById("myCartBtn").addEventListener("click", function (e) {
   document.getElementById("myCart").classList.remove("d-none");
   document.getElementById("myCart").scrollIntoView({ behavior: "smooth" });
 });
+
+
 
 // Function to reveal and scroll to the My Cart section
 function showMyCart() {
