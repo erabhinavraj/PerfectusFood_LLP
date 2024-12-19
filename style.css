@@ -10,13 +10,13 @@ body {
 /* Main Content */
 
 main {
-  background-color: #ffa405;
+  /* background-color: #ffa405; */
   padding: 20px;
   height: 100%;
   width: 100%;
   font-family: sans-serif;
   text-align: center;
-  /* background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg); */
+  background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg);
 }
 
 section {
