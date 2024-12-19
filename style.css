@@ -10,13 +10,13 @@ body {
 /* Main Content */
 
 main {
-  /* background-color: #ffa405; */
+  background-color: #ffffff;
   padding: 20px;
   height: 100%;
   width: 100%;
   font-family: sans-serif;
   text-align: center;
-  background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg);
+  /* background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg); */
 }
 
 section {
@@ -27,8 +27,8 @@ section {
 /* welcome */
 /* Welcome Quote Styling */
 .container {
-  /* background: #f8f9fa; */
-  background-color: black;
+  background: #f8f9fa;
+  /* background-color: black; */
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -39,7 +39,7 @@ section {
 }
 
 .container p{
-  color: #ff054c;
+  color: #000000;
 }
 
 .container:hover {
@@ -110,10 +110,11 @@ p.lead {
 #menu h2 {
   font-weight: bold;
   color: #333;
-  background-color: rgba(255, 0, 0);
+  background-color: #ffa405;
   /* background-color: #ffa405; */
-
-  /* display: inline; */
+  display: block;
+  /* height: 40px; */
+  font-size: 35px;
 }
 
 #menu p {
@@ -126,18 +127,22 @@ p.lead {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 /* Each Menu Category */
 #menu .col-md-4 {
   /* background: #fff; */
   /* background-color: #efb95a; */
-  background-color: black;
+  background-color: whitesmoke;
   padding: 20px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 15px;
+  /* text-align: left; */
+  color: #000000;
+  position: relative;
   /* opacity: 1 !important;  */
 }
 
@@ -149,6 +154,7 @@ p.lead {
   opacity: 0.95;
 
 }
+
 
 /* Heading Colors for Each Category */
 .text-primary {
@@ -179,11 +185,17 @@ p.lead {
 
 #menu .list-unstyled li {
   font-weight: 500;
-  font-size: 18px;
-  /* color: #555; */
-  color: white;
+  font-size: 14px;
+  /* color: white; */
+  color: #000000;
   padding: 8px 0;
   transition: color 0.3s ease;
+  text-align: left;
+}
+
+#menu .list-unstyled li .item-text {
+  text-align: left; /* Ensure the text inside the span is left-aligned */
+  flex-grow: 1; /* Take up remaining space for alignment */
 }
 
 /* Hover Effect on Menu Items */
@@ -195,10 +207,35 @@ p.lead {
 
 /* Add a subtle transition effect */
 #menu .list-unstyled li::before {
-  content: "• ";
+  /* content: "• "; */
   color: #007bff;
   font-weight: bold;
   font-size: 24px;
+}
+
+/* Styling for each menu item */
+.menu-item {
+  display: flex;
+  justify-content: space-between; /* Aligns content on the left and right */
+  align-items: center; /* Centers content vertically */
+  padding: 10px;
+  border-bottom: 1px solid #ccc; /* Optional: Separate items with a border */
+}
+
+/* Controls container on the right */
+.menu-controls {
+  display: flex;
+  align-items: center;
+}
+
+/* Buttons and count styling */
+.menu-controls .btn {
+  margin-left: 5px;
+}
+
+.menu-controls .badge {
+  margin-left: 10px;
+  font-size: 0.9rem;
 }
 
 /* Media Query for Better Responsiveness */
@@ -216,9 +253,9 @@ p.lead {
   /* background-color: #f8f9fa; */
   /* border-top: 2px solid #ddd; */
   border-radius: 10px;
-  background-color: #000000;
+  background-color: #ffa405;
   color: red;
-  border: 0.5px solid #000000; 
+  /* border: 0.5px solid #000000;  */
 
   /* width: fit-content; */
   /* margin-left: 23%; */
@@ -241,7 +278,7 @@ p.lead {
 } */
 
 .order-section h2 {
-  color: #ffa405;
+  color: red;
   font-size: 2.5rem;
   margin-bottom: 10px;
 }
@@ -252,6 +289,13 @@ p.lead {
 
 .order-section .btn {
   font-size: 1.2rem;
+}
+#orderNowBtn{
+  background-color: white;
+  width: 150px;
+  color: red;
+  font-weight: bold;
+  border: 0px;
 }
 
 /* gallery */
@@ -301,11 +345,12 @@ p.lead {
 /* Optional: For visual clarity */
 #about-us {
   /* background-color: #f9f3e5; */
-  background-color: #000000;
+  /* background-color: #000000; */
+  background-color: #f9f3e5b8;
   padding: 30px;
   border-radius: 10px;
   /* opacity: 0.8; */
-  color: white;
+  color: black;
 }
 .about h2{
   color: #ffa405;
@@ -332,6 +377,13 @@ p {
   font-size: 16px;
   line-height: 1.6;
 }
+.about .left{
+  text-align: left;
+}
+.about .yellow{
+  /* color: #ffa405; */
+  color: red;
+}
 
 /* Contact  */
 #contact {
@@ -339,16 +391,17 @@ p {
   padding: 30px;
   border-radius: 5px;
   /* opacity: 0.9; */
-  background-color: #000000;
-  color: #ffa405;
-}
-#contact:hover {
-  /* background-color: #f9f9f9; */
+  /* background-color: #000000; */
   background-color: #f9f3e5b8;
-
-
+  /* color: #ffa405; */
   color: black;
+  /* width: 330px; */
 }
+/* #contact:hover {
+  background-color: #f9f9f9;
+  background-color: #f9f3e5b8;
+  color: black;
+} */
 
 a.text-primary {
   font-weight: bold;
@@ -379,6 +432,9 @@ a.text-primary {
 }
 
 @media (max-width: 768px) {
+  #contact{
+    width: 328px;
+  }
   #contact .btn {
     font-size: 14px;
     /* Slightly smaller font for mobile */
@@ -398,9 +454,10 @@ a.text-primary {
 
 /* Footer */
 footer {
-  /* background-color: #212121; */
-  background-color: #000000;
-  color: #fff;
+  background-color: #ffa405;
+  /* background-color: #000000; */
+
+  color: #000000;
   text-align: center;
   padding: 15px;
   bottom: 0;
