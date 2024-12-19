@@ -645,7 +645,7 @@ function removeFromMenu(itemName, buttonId) {
     }
     updateMenuCount(itemName, buttonId);
     updateCartUI();
-    // alert(`${itemName} has been removed from your cart.`);
+    alert(`${itemName} has been removed from your cart.`);
   } else {
     alert(`${itemName} is not in your cart.`);
   }
@@ -716,6 +716,7 @@ function updateCartUI() {
                 <div>
                     <button class="btn btn-sm btn-success me-2" onclick="incrementItem(${index})">+</button>
                     <button class="btn btn-sm btn-warning me-2" onclick="decrementItem(${index})">-</button>
+
                     <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">Remove</button>
                 </div>
             </div>
