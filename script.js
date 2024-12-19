@@ -859,6 +859,9 @@ function placeOrder() {
         Receiver's Name: ${receiverName}
         Mobile Number: ${mobileNumber}
         Delivery Address: ${deliveryAddress}
+
+        Thank you for Shoping at perfectusfoods.com
+        We hope our food makes your day even better 😊😊😊
     `);
 
   const whatsappURL = `https://wa.me/917250327478?text=${message}`;
