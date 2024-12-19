@@ -217,19 +217,20 @@ p.lead {
   /* border-top: 2px solid #ddd; */
   border-radius: 10px;
   background-color: #000000;
-  color: white;
+  color: red;
   border: 0.5px solid #000000; 
 
   /* width: fit-content; */
   /* margin-left: 23%; */
   .btn{
-    background-color: #ffa405;
+    /* background-color: #ffa405; */
+    background-color: #28a745;
     color: black;
   }
 }
 
 /* Hover on Order now section */
-.order-section:hover {
+/* .order-section:hover {
   background: #f8f9face;
   color: black;
   border-radius: 15px;
@@ -237,7 +238,7 @@ p.lead {
   .btn{
     background-color: #28a745;
   }
-}
+} */
 
 .order-section h2 {
   color: #ffa405;
