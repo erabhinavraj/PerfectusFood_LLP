@@ -11,12 +11,13 @@ body {
 
 main {
   background-color: #ffffff;
+  /* background-color: #F4C2C2; */
   padding: 20px;
   height: 100%;
   width: 100%;
   font-family: sans-serif;
   text-align: center;
-  /* background-image: url(240_F_1066053188_qJzLFH5MAex9UauCwthemWL2Lg8gwfE5.jpg); */
+  /* background-image: url(/Pics/spacebg.jpg); */
 }
 
 section {
@@ -32,7 +33,7 @@ section {
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  /* opacity: 0.7; */
+  /* opacity: 0.8; */
 }
 .container h2{
   color: #ffa405;
@@ -133,10 +134,10 @@ p.lead {
 /* Each Menu Category */
 #menu .col-md-4 {
   /* background: #fff; */
-  /* background-color: #efb95a; */
+  /* background-color: #ae7b23; */
   background-color: whitesmoke;
   padding: 20px;
-  /* border-radius: 12px; */
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 15px;
@@ -170,7 +171,8 @@ p.lead {
 }
 
 .text-warning {
-  color: #ffc107 !important;
+  /* color: #ffc107 !important; */
+  color: #ffa405 !important;
 }
 
 .text-info {
