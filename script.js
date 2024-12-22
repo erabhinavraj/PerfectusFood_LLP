@@ -624,6 +624,7 @@ function populateMenu() {
 
   // Event listeners for filter buttons
   document.getElementById("veg-filter-btn").addEventListener("click", () => {
+    alert("Filtering Veg items...");
     // Filter menu to show only Veg items
     filteredMenuData = menuData.map((section) => {
       return {
@@ -638,6 +639,7 @@ function populateMenu() {
   });
 
   document.getElementById("non-veg-filter-btn").addEventListener("click", () => {
+    alert("Filtering Non-Veg items...");
     // Filter menu to show only Non-Veg items
     filteredMenuData = menuData.map((section) => {
       return {
@@ -652,6 +654,7 @@ function populateMenu() {
   });
 
   document.getElementById("clear-filter-btn").addEventListener("click", () => {
+    alert("Clearing filters to show all items...");
     // Reset the filter to show all items
     filteredMenuData = [...menuData];
     renderMenu(filteredMenuData);
