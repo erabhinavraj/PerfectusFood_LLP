@@ -542,98 +542,122 @@ const menuData = [
 // here menu is ended
 
 // Function to dynamically populate the menu
+// Function to dynamically populate the menu
 function populateMenu() {
   const menuGrid = document.getElementById("menu-grid");
 
-  menuData.forEach((section) => {
-    // Create main category container
-    const categoryDiv = document.createElement("div");
-    categoryDiv.className = "col-md-4 mb-4";
+  // Create a copy of menuData for filtering
+  let filteredMenuData = [...menuData];
 
-    // Add main category title
-    categoryDiv.innerHTML = `<h4 class="${section.colorClass}">${section.category}</h4>`;
+  // Function to render the menu based on the filtered data
+  function renderMenu(menuData) {
+    menuGrid.innerHTML = ''; // Clear current menu
 
-    // Iterate through subcategories (Veg and Non-Veg)
-    Object.keys(section.subcategories).forEach((subKey) => {
-      const subItems = section.subcategories[subKey];
+    menuData.forEach((section) => {
+      // Create main category container
+      const categoryDiv = document.createElement("div");
+      categoryDiv.className = "col-md-4 mb-4";
 
-      // Create subcategory container
-      const subCategoryDiv = document.createElement("div");
-      subCategoryDiv.className = "mb-3";
+      // Add main category title
+      categoryDiv.innerHTML = `<h4 class="${section.colorClass}">${section.category}</h4>`;
 
-      // Subcategory title
-      subCategoryDiv.innerHTML = `<h5 class="${subKey === "Veg" ? "text-success" : "text-danger"
-        }">${subKey}</h5>`;
+      // Iterate through subcategories (Veg and Non-Veg)
+      Object.keys(section.subcategories).forEach((subKey) => {
+        const subItems = section.subcategories[subKey];
 
-      const ul = document.createElement("ul");
-      ul.className = "list-unstyled";
+        // Create subcategory container
+        const subCategoryDiv = document.createElement("div");
+        subCategoryDiv.className = "mb-3";
 
-      // Populate items for subcategory on line 192:- ${item.name} - ₹${item.price}
+        // Subcategory title with symbol
+        const symbol = subKey === "Veg" ? "🟢" : "🔴";
+        const colorClass = subKey === "Veg" ? "text-success" : "text-danger";
 
-      // subItems.forEach((item) => {
-      //   const li = document.createElement("li");
-      //   li.innerHTML = `
-      //     ${item.name} - ₹${item.price}
-      //     <span id="count-${item.name.replace(
-      //     /\s+/g,
-      //     ""
-      //   )}" class="badge bg-primary ms-2">0</span>
-      //     <button class="btn btn-sm btn-success ms-2"
-      //       onclick="addToCart('${item.name}', ${item.price
-      //     }, 'count-${item.name.replace(/\s+/g, "")}')">
-      //       <i class="bi bi-plus"></i>
-      //     </button>
-      //     <button class="btn btn-sm btn-warning ms-2"
-      //       onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
-      //       <i class="bi bi-dash"></i>
-      //     </button>
-      //   `;
-      //   ul.appendChild(li);
-      // });
+        subCategoryDiv.innerHTML = `
+          <h5>
+            ${symbol} <span class="${colorClass}">${subKey}</span>
+          </h5>`;
 
-      // This is for +0- style 
+        const ul = document.createElement("ul");
+        ul.className = "list-unstyled";
 
-      subItems.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "menu-item d-flex justify-content-between align-items-center";
-        li.innerHTML = `
-          <span class="item-text">${item.name} - ₹${item.price}</span>
-          <span class="menu-controls">
+        // Populate items for subcategory
+        subItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "menu-item d-flex justify-content-between align-items-center";
+          li.innerHTML = `
+            <span class="item-text">${item.name} - ₹${item.price}</span>
+            <span class="menu-controls">           
+              <button class="btn btn-sm btn-warning ms-2"
+              onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
+              <i class="bi bi-dash"></i>
+            </button>
+            <span id="count-${item.name.replace(/\s+/g, "")}" class="badge bg-primary ms-2">0</span>
             <button class="btn btn-sm btn-success ms-2"
               onclick="addToCart('${item.name}', ${item.price}, 'count-${item.name.replace(/\s+/g, "")}')">
               <i class="bi bi-plus"></i>
             </button>
-            <span id="count-${item.name.replace(/\s+/g, "")}" class="badge bg-primary ms-2">0</span>
-            <button class="btn btn-sm btn-warning ms-2"
-              onclick="removeFromMenu('${item.name}', 'count-${item.name.replace(/\s+/g, "")}')">
-              <i class="bi bi-dash"></i>
-            </button>
           </span>
         `;
-        ul.appendChild(li);
+          ul.appendChild(li);
+        });
+
+        subCategoryDiv.appendChild(ul);
+        categoryDiv.appendChild(subCategoryDiv);
       });
-      
-      
 
-      subCategoryDiv.appendChild(ul);
-      categoryDiv.appendChild(subCategoryDiv);
+      // Add the "Visit My Cart" button at the end of the main category
+      const visitCartBtn = document.createElement("button");
+      visitCartBtn.className = "btn btn-primary mt-3";
+      visitCartBtn.textContent = "Visit My Cart";
+      visitCartBtn.addEventListener("click", showMyCart);
+
+      categoryDiv.appendChild(visitCartBtn);
+
+      // Append main category to the menu grid
+      menuGrid.appendChild(categoryDiv);
     });
+  }
 
-        // Add the "Visit My Cart" button at the end of the main category
-        const visitCartBtn = document.createElement("button");
-        visitCartBtn.className = "btn btn-primary mt-3";
-        visitCartBtn.textContent = "Visit My Cart";
-        visitCartBtn.addEventListener("click", showMyCart);
-    
-        categoryDiv.appendChild(visitCartBtn);
+  // Initial render of the full menu
+  renderMenu(filteredMenuData);
 
-    // Append main category to the menu grid
-    menuGrid.appendChild(categoryDiv);
+  // Event listeners for filter buttons
+  document.getElementById("veg-filter-btn").addEventListener("click", () => {
+    // Filter menu to show only Veg items
+    filteredMenuData = menuData.map((section) => {
+      return {
+        ...section,
+        subcategories: {
+          Veg: section.subcategories.Veg,
+          NonVeg: [], // Hide Non-Veg items
+        },
+      };
+    });
+    renderMenu(filteredMenuData);
   });
 
+  document.getElementById("non-veg-filter-btn").addEventListener("click", () => {
+    // Filter menu to show only Non-Veg items
+    filteredMenuData = menuData.map((section) => {
+      return {
+        ...section,
+        subcategories: {
+          Veg: [], // Hide Veg items
+          NonVeg: section.subcategories.NonVeg,
+        },
+      };
+    });
+    renderMenu(filteredMenuData);
+  });
+
+  document.getElementById("clear-filter-btn").addEventListener("click", () => {
+    // Reset the filter to show all items
+    filteredMenuData = [...menuData];
+    renderMenu(filteredMenuData);
+  });
 }
 
-// Function to remove item from the menu
 function removeFromMenu(itemName, buttonId) {
   const existingItem = cart.find((item) => item.name === itemName);
 
