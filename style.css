@@ -29,6 +29,33 @@ section {
   margin: 20px;
 }
 
+/* Navigation's list txt  */
+.navbar-nav .nav-link, .dropdown-item {
+  color: #ffa405 !important;
+}
+.navbar-nav .nav-link:hover,
+.dropdown-item:hover {
+  color: #ffb933;
+}
+
+/* Dropdown list alignment  */
+
+.dropdown-menu {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+}
+.offcanvas .dropdown-menu {
+  margin: 0;
+  padding: 0.5rem;
+}
+.offcanvas .dropdown-item {
+  white-space: normal; /* Ensures long text wraps properly */
+}
+/* Nav Header's Mobole View Aqua  */
+#offcanvasDarkNavbarLabel {
+  color: aqua;
+}
+
 /* welcome */
 /* Welcome Quote Styling */
 .container {
