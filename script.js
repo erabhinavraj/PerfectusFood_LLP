@@ -541,8 +541,6 @@ const menuData = [
 
 // here menu is ended
 
-// Function to dynamically populate the menu
-// Function to dynamically populate the menu
 function populateMenu() {
   const menuGrid = document.getElementById("menu-grid");
 
@@ -553,13 +551,43 @@ function populateMenu() {
   function renderMenu(menuData) {
     menuGrid.innerHTML = ''; // Clear current menu
 
-    menuData.forEach((section) => {
+    menuData.forEach((section, index) => {
       // Create main category container
       const categoryDiv = document.createElement("div");
       categoryDiv.className = "col-md-4 mb-4";
 
+      // Create the main category header with category name
+      const categoryHeaderDiv = document.createElement("div");
+      categoryHeaderDiv.className = "category-header";
+
       // Add main category title
-      categoryDiv.innerHTML = `<h4 class="${section.colorClass}">${section.category}</h4>`;
+      categoryHeaderDiv.innerHTML = `
+        <h4 class="${section.colorClass}">${section.category}</h4>
+      `;
+
+      // Append the category header
+      categoryDiv.appendChild(categoryHeaderDiv);
+
+      // Create the toggle button just below the category name (to show/hide subcategories and visit cart button)
+      const toggleButtonDiv = document.createElement("div");
+      toggleButtonDiv.className = "toggle-btn-container d-flex justify-content-end";
+      toggleButtonDiv.innerHTML = `
+        <button class="btn btn-info" id="toggle-btn-${index}" onclick="toggleCategory(${index})">
+          Hide ${section.category}
+        </button>
+      `;
+      categoryDiv.appendChild(toggleButtonDiv);
+
+      // Create a container for the subcategories and the "Visit My Cart" button
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "category-content";
+      contentDiv.id = `content-${index}`;
+
+      // Create subcategories container (visible by default)
+      const subcategoriesDiv = document.createElement("div");
+      subcategoriesDiv.className = "subcategory-container";
+      subcategoriesDiv.id = `subcategory-${index}`;
+      subcategoriesDiv.style.display = "block"; // Show by default
 
       // Iterate through subcategories (Veg and Non-Veg)
       Object.keys(section.subcategories).forEach((subKey) => {
@@ -603,23 +631,28 @@ function populateMenu() {
         });
 
         subCategoryDiv.appendChild(ul);
-        categoryDiv.appendChild(subCategoryDiv);
+        subcategoriesDiv.appendChild(subCategoryDiv);
       });
 
-      // Add the "Visit My Cart" button at the end of the main category
+      contentDiv.appendChild(subcategoriesDiv);
+
+      // Add the "Visit My Cart" button at the end of the main category inside the content div
       const visitCartBtn = document.createElement("button");
-      visitCartBtn.className = "btn btn-primary mt-3";
+      visitCartBtn.className = "btn btn-primary mt-3 visit-cart-btn";
       visitCartBtn.textContent = "Visit My Cart";
       visitCartBtn.addEventListener("click", showMyCart);
 
-      categoryDiv.appendChild(visitCartBtn);
+      contentDiv.appendChild(visitCartBtn);
 
-      // Append main category to the menu grid
+      // Append the contentDiv to the categoryDiv
+      categoryDiv.appendChild(contentDiv);
+
+      // Append the main category to the menu grid
       menuGrid.appendChild(categoryDiv);
     });
   }
 
-  // Initial render of the full menu
+  // Initial render of the full menu (with all items visible)
   renderMenu(filteredMenuData);
 
   // Event listeners for filter buttons
@@ -660,6 +693,22 @@ function populateMenu() {
     renderMenu(filteredMenuData);
   });
 }
+
+// Function to toggle visibility of subcategories and "Visit My Cart" button
+function toggleCategory(index) {
+  const contentDiv = document.getElementById(`content-${index}`);
+  const toggleButton = document.getElementById(`toggle-btn-${index}`);
+
+  // Toggle the visibility of the content inside the category (subcategories and Visit My Cart button)
+  if (contentDiv.style.display === "none") {
+    contentDiv.style.display = "block";
+    toggleButton.textContent = `Hide ${menuData[index].category}`;
+  } else {
+    contentDiv.style.display = "none";
+    toggleButton.textContent = `Show ${menuData[index].category}`;
+  }
+}
+  
 
 function removeFromMenu(itemName, buttonId) {
   const existingItem = cart.find((item) => item.name === itemName);
