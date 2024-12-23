@@ -541,6 +541,8 @@ const menuData = [
 
 // here menu is ended
 
+// Function to Populate  the menu dynamically
+
 function populateMenu() {
   const menuGrid = document.getElementById("menu-grid");
 
