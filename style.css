@@ -127,8 +127,30 @@ p.lead {
 }
 
 
-/* Menu  */
 /* General Container Styling */
+/* Heading Colors for Each Category */
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.text-warning {
+  /* color: #ffc107 !important; */
+  color: #ffa405 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+/* Menu  */
 #menu {
   /* background-color: #e5d5be; */
   /* background-color: #f9f3e5; */
@@ -167,20 +189,18 @@ p.lead {
 
 /* Each Menu Category */
 #menu .col-md-4 {
-  /* background: #fff; */
-  /* background-color: #373532; */
-  /* background-color: whitesmoke; */
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 15px;
-  /* text-align: left; */
   color: #000000;
   position: relative;
   opacity: 0.9;
   background-color: #000000;
 }
+
+
 
 /* Hover Effects for Each Category */
 #menu .col-md-4:hover {
@@ -191,29 +211,6 @@ p.lead {
   /* background-color: antiquewhite; */
   /* opacity: 0.95; */
 
-}
-
-
-/* Heading Colors for Each Category */
-.text-primary {
-  color: #007bff !important;
-}
-
-.text-success {
-  color: #28a745 !important;
-}
-
-.text-danger {
-  color: #dc3545 !important;
-}
-
-.text-warning {
-  /* color: #ffc107 !important; */
-  color: #ffa405 !important;
-}
-
-.text-info {
-  color: #17a2b8 !important;
 }
 
 /* Menu List Items */
@@ -290,6 +287,63 @@ p.lead {
   }
 }
 
+/* Hide and Show btn for menu's items  */
+/* Category Header */
+.category-header {
+  margin-bottom: 15px;
+}
+
+.category-header h4 {
+  font-size: 20px;
+  margin-bottom: 5px; /* Some space between the title and the button */
+}
+
+/* Button for toggling category visibility, placed below category name */
+.toggle-btn-container {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+}
+
+#menu .toggle-btn-container button {
+  font-size: 14px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #17a2b8; /* Light blue */
+  color: white;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#menu .toggle-btn-container button:hover {
+  background-color: #138496; /* Darker blue on hover */
+}
+
+#menu .toggle-btn-container button:focus {
+  outline: none;
+}
+
+/* Menu Items */
+#menu .subcategory-container {
+  margin-top: 10px;
+}
+
+#menu .subcategory-container ul {
+  padding-left: 0;
+}
+
+#menu .list-unstyled li {
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  padding: 8px 0;
+}
+
+#menu .list-unstyled li:hover {
+  color: #0ac5e2;
+}
+
+/* Enables For BG Dark Only */
 #myCart {
   color: white;
 }
@@ -307,7 +361,7 @@ p.lead {
 
   /* width: fit-content; */
   /* margin-left: 23%; */
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
 
   /* background-blend-mode: overlay; */
   .btn {
@@ -344,11 +398,11 @@ p.lead {
 }
 
 #orderNowBtn {
-  /* background-color: white; */
+  /* background-color: rgba(20, 245, 245, 0.907); */
   background-color: #ffa405;
   width: 150px;
   /* color: red; */
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-weight: bold;
   border: 0px;
 }
