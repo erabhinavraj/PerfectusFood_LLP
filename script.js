@@ -543,6 +543,7 @@ const menuData = [
 
 // Function to Populate  the menu dynamically
 
+// Function to populate the menu
 function populateMenu() {
   const menuGrid = document.getElementById("menu-grid");
 
@@ -563,7 +564,7 @@ function populateMenu() {
       categoryHeaderDiv.className = "category-header";
 
       // Add main category title
-      categoryHeaderDiv.innerHTML = `
+      categoryHeaderDiv.innerHTML = `    
         <h4 class="${section.colorClass}">${section.category}</h4>
       `;
 
@@ -573,9 +574,9 @@ function populateMenu() {
       // Create the toggle button just below the category name (to show/hide subcategories and visit cart button)
       const toggleButtonDiv = document.createElement("div");
       toggleButtonDiv.className = "toggle-btn-container d-flex justify-content-end";
-      toggleButtonDiv.innerHTML = `
+      toggleButtonDiv.innerHTML = `  
         <button class="btn btn-info" id="toggle-btn-${index}" onclick="toggleCategory(${index})">
-          Hide ${section.category}
+          Hide Items
         </button>
       `;
       categoryDiv.appendChild(toggleButtonDiv);
@@ -603,7 +604,7 @@ function populateMenu() {
         const symbol = subKey === "Veg" ? "🟢" : "🔴";
         const colorClass = subKey === "Veg" ? "text-success" : "text-danger";
 
-        subCategoryDiv.innerHTML = `
+        subCategoryDiv.innerHTML = `  
           <h5>
             ${symbol} <span class="${colorClass}">${subKey}</span>
           </h5>`;
@@ -615,7 +616,7 @@ function populateMenu() {
         subItems.forEach((item) => {
           const li = document.createElement("li");
           li.className = "menu-item d-flex justify-content-between align-items-center";
-          li.innerHTML = `
+          li.innerHTML = `  
             <span class="item-text">${item.name} - ₹${item.price}</span>
             <span class="menu-controls">           
               <button class="btn btn-sm btn-warning ms-2"
@@ -665,7 +666,7 @@ function populateMenu() {
       return {
         ...section,
         subcategories: {
-          Veg: section.subcategories.Veg,
+          Veg: section.subcategories.Veg || [], // Keep Veg, if exists, else empty
           NonVeg: [], // Hide Non-Veg items
         },
       };
@@ -681,7 +682,7 @@ function populateMenu() {
         ...section,
         subcategories: {
           Veg: [], // Hide Veg items
-          NonVeg: section.subcategories.NonVeg,
+          NonVeg: section.subcategories.NonVeg || [], // Keep Non-Veg, if exists, else empty
         },
       };
     });
@@ -694,6 +695,7 @@ function populateMenu() {
     filteredMenuData = [...menuData];
     renderMenu(filteredMenuData);
   });
+
 }
 
 // Function to toggle visibility of subcategories and "Visit My Cart" button
@@ -704,12 +706,13 @@ function toggleCategory(index) {
   // Toggle the visibility of the content inside the category (subcategories and Visit My Cart button)
   if (contentDiv.style.display === "none") {
     contentDiv.style.display = "block";
-    toggleButton.textContent = `Hide ${menuData[index].category}`;
+    toggleButton.textContent = "Hide Items"; // Update to "Hide Items"
   } else {
     contentDiv.style.display = "none";
-    toggleButton.textContent = `Show ${menuData[index].category}`;
+    toggleButton.textContent = "Show Items"; // Update to "Show Items"
   }
 }
+
   
 
 function removeFromMenu(itemName, buttonId) {
@@ -870,9 +873,10 @@ function placeOrder() {
   const mobileNumber = document.getElementById("mobileNumber").value;
   const deliveryAddress = document.getElementById("deliveryAddress").value;
   const couponCode = document.getElementById("offers").value.trim(); // Get the coupon code
+  const deliveryOption = document.getElementById("deliveryOption").value; // Get delivery option
 
   // Check if all fields are filled
-  if (receiverName === "" || mobileNumber === "" || deliveryAddress === "") {
+  if (receiverName === "" || mobileNumber === "") {
     alert("Please fill in all the details.");
     return;
   }
@@ -882,6 +886,22 @@ function placeOrder() {
   if (!mobileRegex.test(mobileNumber)) {
     alert("Please enter a valid 10-digit mobile number.");
     return;
+  }
+
+  // Handle delivery options
+  let deliveryMessage = "";
+  let deliveryAddressField = "";
+  
+  if (deliveryOption === "dineIn" || deliveryOption === "takeAway") {
+    deliveryMessage = "You can get your Treat in 15 minutes.";
+    document.getElementById("deliveryAddressSection").style.display = "none"; // Hide delivery address
+  } else if (deliveryOption === "getDelivery") {
+    deliveryMessage = ""; // No specific message for delivery
+    document.getElementById("deliveryAddressSection").style.display = "block"; // Show delivery address
+    if (deliveryAddress === "") {
+      alert("Please provide a delivery address.");
+      return;
+    }
   }
 
   // Prepare the order details with numbering and line breaks
@@ -934,11 +954,14 @@ function placeOrder() {
         Discount: ₹${roundedDiscount}
         Payable Amount: ₹${roundedDiscountedAmount}
         
-        Receiver's Name: ${receiverName}
+        Name: ${receiverName}
         Mobile Number: ${mobileNumber}
-        Delivery Address: ${deliveryAddress}
+        Delivery Address: ${deliveryAddress || "N/A"}
+        Delivery Option: ${deliveryOption}
+        
+        Note: ${deliveryMessage || "You will get your Treat in 20 minutes."}
 
-        Thank you for Shoping at perfectusfoods.com
+        Thank you for Shopping at perfectusfoods.com
         We hope our food makes your day even better 😊😊😊
     `);
 
@@ -958,6 +981,45 @@ function placeOrder() {
   );
   myModal.hide(); // Hide the modal after the order is placed
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialize the state when the page loads
+  updateDeliveryOption();
+});
+
+function updateDeliveryOption() {
+  const deliveryOption = document.getElementById("deliveryOption").value;
+  const deliveryAddressSection = document.getElementById("deliveryAddressSection");
+
+  if (deliveryOption === "dineIn" || deliveryOption === "takeAway") {
+    deliveryAddressSection.style.display = "none"; // Hide the delivery address field for Dine In/Take Away
+  } else {
+    deliveryAddressSection.style.display = "block"; // Show the delivery address field for Get Delivery
+  }
+}
+
+// Function to update the delivery option message and address visibility when the user changes the option
+document.getElementById("deliveryOption").addEventListener("change", function () {
+  updateDeliveryOption();
+  const deliveryOption = this.value;
+  const deliveryMessage = document.getElementById("deliveryMessage");
+
+  if (deliveryOption === "dineIn" || deliveryOption === "takeAway") {
+    document.getElementById("deliveryAddressSection").style.display = "none";
+    deliveryMessage.textContent = "You can get your Treat in 15 minutes.";
+  } else {
+    document.getElementById("deliveryAddressSection").style.display = "block";
+    deliveryMessage.textContent = "";
+  }
+});
+
+
+// Function to handle the button click in delivery details
+function pasteCouponCode() {
+  const couponCode = "Welcome10"; // Current coupon code
+  document.getElementById("offers").value = couponCode; // Paste coupon code in the textarea
+}
+
 
 // Scroll to My Cart Section
 document.getElementById("myCartBtn").addEventListener("click", function (e) {
