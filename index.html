@@ -297,6 +297,7 @@
       <p class="text-center mb-4">
         <em id="dynamic-menu-text" class="text-primary fixed-effect"></em>
       </p>
+      <!-- Discount Info -->
       <h1 style="color: red;">Get 10% Discount <br> <span style="color: rgb(255, 255, 255);">Use Coupon Code : <span
             style="background-color: #ffa405; color: black;">Welcome10</span></span></h1>
       <hr>
@@ -307,6 +308,8 @@
         <button class="btn btn-danger me-2" id="non-veg-filter-btn">Show Non-Veg</button>
         <button class="btn btn-secondary" id="clear-filter-btn">Clear Filter</button>
       </div>
+
+      <!-- Menu Grid Section -->
       <div id="menu-grid" class="row justify-content-center"></div>
     </section>
 
@@ -374,19 +377,27 @@
                 <input type="tel" class="form-control" id="mobileNumber" pattern="^\d{10}$" required
                   title="Please enter a valid 10-digit mobile number">
               </div>
+              <!-- Delivery Option Section -->
               <div class="mb-3">
-                <label for="deliveryAddress" class="form-label">Delivery Address</label>
-                <textarea class="form-control" id="deliveryAddress" rows="3" required></textarea>
+                <label for="deliveryOption" class="form-label">Select How You Want to Enjoy Your Meal</label>
+                <select class="form-control" id="deliveryOption" required>
+                  <option value="dineIn">Dine In</option>
+                  <option value="takeAway">Take Away</option>
+                  <option value="getDelivery">Get Delivery</option>
+                </select>
               </div>
-              <!-- <div class="mb-3">
-                <label for="offers" class="form-label">Offers</label>
-                <textarea class="form-control" id="offers" placeholder="Welcome10"></textarea>
-              </div> -->
+
+              <!-- Delivery Address (Initially hidden) -->
+              <div class="mb-3" id="deliveryAddressSection">
+                <label for="deliveryAddress" class="form-label">Delivery Address</label>
+                <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
+              </div>
               <div class="mb-3">
                 <label for="offers" class="form-label">Apply Coupon Code</label>
-                <textarea class="form-control" id="offers" rows="2"
-                  placeholder="Enter your exact offer code here (e.g., Welcome10)" maxlength="20"></textarea>
+                <textarea class="form-control" id="offers" rows="2" placeholder="Enter your exact offer code here (e.g., Welcome10)" maxlength="20"></textarea>
+                <button type="button" class="btn btn-info mt-2" onclick="pasteCouponCode()">Paste Current Coupon Code</button>
               </div>
+              
             </form>
           </div>
           <div class="modal-footer">
@@ -541,7 +552,8 @@
         <p><strong class="yellow">Our Focus are as follow: </strong> <br><em id="dynamic-about-text"
             class="fixed-effect text-primary"></em></p>
 
-        <p class="left">Established in 2016, Perfectus has become a beloved name in Madhubani's vibrant food scene. Known
+        <p class="left">Established in 2016, Perfectus has become a beloved name in Madhubani's vibrant food scene.
+          Known
           for its
           scrumptious flavors, delightful dining experiences, and quick service, we’ve become a go-to spot for food
           lovers
