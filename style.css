@@ -17,7 +17,7 @@ main {
   width: 100%;
   font-family: sans-serif;
   text-align: center;
-  background-image: url(spacebg.jpg);
+  background-image: url(starbg.jpg);
   /* background-image: url(starbg.jpg); */
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: overlay;
