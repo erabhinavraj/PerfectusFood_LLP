@@ -934,16 +934,40 @@ function placeOrder() {
     alert("Coupon code is valid but the minimum cart total for this coupon is ₹200.");
   }
 
-  // Apply XMASNY25 coupon logic
-  else if (couponCode === "XMASNY25" && totalAmount >= 500) {
+  // Apply XMASNY25 coupon logic with time constraint and fallback to Welcome10
+else if (couponCode === "XMASNY25" && totalAmount >= 500) {
+  // Get the current time (in hours)
+  const currentHour = new Date().getHours(); // Returns an integer between 0 and 23
+
+  // Check if the current time is between 3 PM (15:00) and 7 PM (19:00)
+  if (currentHour >= 15 && currentHour < 19) {
     discount = totalAmount * 0.25; // 25% discount
     if (discount > 250) {
       discount = 250; // Maximum discount is ₹250
     }
     alert(`Coupon applied! You get ₹${discount} off for the Christmas & New Year special.`);
-  } else if (couponCode === "XMASNY25" && totalAmount < 500) {
-    alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
+  } else {
+    // If the time is not within the allowed range, apply Welcome10 coupon instead
+    alert("This coupon can only be used between 3:00 PM and 7:00 PM. Please Apply the Welcome10 coupon instead.");
+    
+    // Apply the Welcome10 coupon logic (assuming Welcome10 has been previously defined)
+    couponCode = "Welcome10";  // Force the couponCode to "Welcome10" for this case
+
+    // Check if Welcome10 is applicable
+    if (totalAmount >= 200) {
+      discount = totalAmount * 0.10; // 10% discount
+      if (discount > 100) {
+        discount = 100; // Maximum discount is ₹100
+      }
+      alert(`Coupon applied! You get ₹${discount} off with Welcome10.`);
+    } else {
+      alert("Coupon code is valid but the minimum cart total for Welcome10 is ₹200.");
+    }
   }
+} else if (couponCode === "XMASNY25" && totalAmount < 500) {
+  alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
+}
+
 
   // Apply discount to the total amount
   const discountedAmount = totalAmount - discount;
