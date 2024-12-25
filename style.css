@@ -10,16 +10,15 @@ body {
 /* Main Content */
 
 main {
-  background-color: #ffffff;
-  /* background-color: #F4C2C2; */
+ background-color: #06091c;
   padding: 20px;
   height: 100%;
   width: 100%;
   font-family: sans-serif;
   text-align: center;
-  background-image: url(starbg.jpg);
   /* background-image: url(starbg.jpg); */
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-image: url(starbg.jpg); */
+  /* background-color: rgba(0, 0, 0, 0.5); */
   background-blend-mode: overlay;
 }
 
