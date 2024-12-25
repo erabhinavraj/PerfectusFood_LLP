@@ -923,7 +923,7 @@ function placeOrder() {
   // Coupon Code Logic
   let discount = 0;
 
-  // Apply coupon logic only if cart value is above 200
+  // Apply Welcome10 coupon logic
   if (couponCode === "Welcome10" && totalAmount >= 200) {
     discount = totalAmount * 0.10; // 10% discount
     if (discount > 100) {
@@ -932,6 +932,17 @@ function placeOrder() {
     alert(`Coupon applied! You get ₹${discount} off.`);
   } else if (couponCode === "Welcome10" && totalAmount < 200) {
     alert("Coupon code is valid but the minimum cart total for this coupon is ₹200.");
+  }
+
+  // Apply XMASNY25 coupon logic
+  else if (couponCode === "XMASNY25" && totalAmount >= 500) {
+    discount = totalAmount * 0.25; // 25% discount
+    if (discount > 250) {
+      discount = 250; // Maximum discount is ₹250
+    }
+    alert(`Coupon applied! You get ₹${discount} off for the Christmas & New Year special.`);
+  } else if (couponCode === "XMASNY25" && totalAmount < 500) {
+    alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
   }
 
   // Apply discount to the total amount
@@ -963,6 +974,7 @@ function placeOrder() {
 
         Thank you for Shopping at perfectusfoods.com
         We hope our food makes your day even better 😊😊😊
+        Wishing you a Merry Christmas and a Happy New Year..!
     `);
 
   const whatsappURL = `https://wa.me/917250327478?text=${message}`;
@@ -981,6 +993,7 @@ function placeOrder() {
   );
   myModal.hide(); // Hide the modal after the order is placed
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize the state when the page loads
@@ -1014,11 +1027,11 @@ document.getElementById("deliveryOption").addEventListener("change", function ()
 });
 
 
-// Function to handle the button click in delivery details
-function pasteCouponCode() {
-  const couponCode = "Welcome10"; // Current coupon code
-  document.getElementById("offers").value = couponCode; // Paste coupon code in the textarea
+// Function to handle the button click and paste coupon code
+function pasteCouponCode(code) {
+  document.getElementById("offers").value = code; // Paste the coupon code in the textarea
 }
+
 
 
 // Scroll to My Cart Section
