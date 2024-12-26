@@ -1006,14 +1006,15 @@ function placeOrder() {
         
         ${orderDetails}
         
+        Ordered On: ${formattedDate} @ ${formattedTime}
+        
         Total Amount: ₹${roundedTotalAmount} 
         Discount: ₹${roundedDiscount}
         Payable Amount: ₹${roundedDiscountedAmount}
         
         Name: ${receiverName}
         Mobile Number: ${mobileNumber}
-        Delivery Address: ${deliveryAddress || "N/A"}
-        Ordered On: ${formattedDate} @ ${formattedTime}
+        Delivery Address: ${deliveryAddress || "N/A"}        
         Delivery Option: ${deliveryOption}
         
 
