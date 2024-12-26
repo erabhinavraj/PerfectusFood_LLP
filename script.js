@@ -868,6 +868,28 @@ function showDeliveryModal() {
 // Form validation and order placement
 // Form validation and order placement
 function placeOrder() {
+  // Get the current date and time
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours(); // Get the current hour (0 to 23)
+  const currentMinute = currentTime.getMinutes(); // Get the current minute (0 to 59)
+  const currentDay = currentTime.getDate(); // Get the current day of the month (1 to 31)
+  const currentMonth = currentTime.getMonth() + 1; // Get the current month (1 to 12)
+  const currentYear = currentTime.getFullYear(); // Get the current year (e.g., 2024)
+
+  // Format the date and time (DD/MM/YYYY HH:MM)
+  const formattedDate = `${currentDay < 10 ? "0" + currentDay : currentDay}/${currentMonth < 10 ? "0" + currentMonth : currentMonth}/${currentYear}`;
+  const formattedTime = `${currentHour}:${currentMinute < 10 ? "0" + currentMinute : currentMinute}`;
+
+  // Check if the time is between 11 AM and 8:30 PM (inclusive)
+  if (currentHour < 11 || (currentHour === 11 && currentMinute < 0) || currentHour > 20 || (currentHour === 20 && currentMinute > 30)) {
+    if (currentHour < 11) {
+      alert("Cafe will open at 11:00 AM. Please place your order after 11:00 AM.");
+    } else {
+      alert("Cafe is closed. Orders can only be placed between 11:00 AM and 8:30 PM.");
+    }
+    return; // Exit the function if the time is outside the allowed range
+  }
+
   // Get values from the form
   const receiverName = document.getElementById("receiverName").value;
   const mobileNumber = document.getElementById("mobileNumber").value;
@@ -935,39 +957,38 @@ function placeOrder() {
   }
 
   // Apply XMASNY25 coupon logic with time constraint and fallback to Welcome10
-else if (couponCode === "XMASNY25" && totalAmount >= 500) {
-  // Get the current time (in hours)
-  const currentHour = new Date().getHours(); // Returns an integer between 0 and 23
+  else if (couponCode === "XMASNY25" && totalAmount >= 500) {
+    // Get the current time (in hours)
+    const currentHour = new Date().getHours(); // Returns an integer between 0 and 23
 
-  // Check if the current time is between 3 PM (15:00) and 7 PM (19:00)
-  if (currentHour >= 15 && currentHour < 19) {
-    discount = totalAmount * 0.25; // 25% discount
-    if (discount > 250) {
-      discount = 250; // Maximum discount is ₹250
-    }
-    alert(`Coupon applied! You get ₹${discount} off for the Christmas & New Year special.`);
-  } else {
-    // If the time is not within the allowed range, apply Welcome10 coupon instead
-    alert("This coupon can only be used between 3:00 PM and 7:00 PM. Please Apply the Welcome10 coupon instead.");
-    
-    // Apply the Welcome10 coupon logic (assuming Welcome10 has been previously defined)
-    couponCode = "Welcome10";  // Force the couponCode to "Welcome10" for this case
-
-    // Check if Welcome10 is applicable
-    if (totalAmount >= 200) {
-      discount = totalAmount * 0.10; // 10% discount
-      if (discount > 100) {
-        discount = 100; // Maximum discount is ₹100
+    // Check if the current time is between 3 PM (15:00) and 7 PM (19:00)
+    if (currentHour >= 15 && currentHour < 19) {
+      discount = totalAmount * 0.25; // 25% discount
+      if (discount > 250) {
+        discount = 250; // Maximum discount is ₹250
       }
-      alert(`Coupon applied! You get ₹${discount} off with Welcome10.`);
+      alert(`Coupon applied! You get ₹${discount} off for the Christmas & New Year special.`);
     } else {
-      alert("Coupon code is valid but the minimum cart total for Welcome10 is ₹200.");
-    }
-  }
-} else if (couponCode === "XMASNY25" && totalAmount < 500) {
-  alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
-}
+      // If the time is not within the allowed range, apply Welcome10 coupon instead
+      alert("This coupon can only be used between 3:00 PM and 7:00 PM. Please Apply the Welcome10 coupon instead.");
+      
+      // Apply the Welcome10 coupon logic (assuming Welcome10 has been previously defined)
+      couponCode = "Welcome10";  // Force the couponCode to "Welcome10" for this case
 
+      // Check if Welcome10 is applicable
+      if (totalAmount >= 200) {
+        discount = totalAmount * 0.10; // 10% discount
+        if (discount > 100) {
+          discount = 100; // Maximum discount is ₹100
+        }
+        alert(`Coupon applied! You get ₹${discount} off with Welcome10.`);
+      } else {
+        alert("Coupon code is valid but the minimum cart total for Welcome10 is ₹200.");
+      }
+    }
+  } else if (couponCode === "XMASNY25" && totalAmount < 500) {
+    alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
+  }
 
   // Apply discount to the total amount
   const discountedAmount = totalAmount - discount;
@@ -993,7 +1014,8 @@ else if (couponCode === "XMASNY25" && totalAmount >= 500) {
         Mobile Number: ${mobileNumber}
         Delivery Address: ${deliveryAddress || "N/A"}
         Delivery Option: ${deliveryOption}
-        
+        Ordered On: ${formattedDate} ${formattedTime}   <!-- Added date and time -->
+
         Note: ${deliveryMessage || "You will get your Treat in 20 minutes."}
 
         Thank you for Shopping at perfectusfoods.com
@@ -1017,6 +1039,7 @@ else if (couponCode === "XMASNY25" && totalAmount >= 500) {
   );
   myModal.hide(); // Hide the modal after the order is placed
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
