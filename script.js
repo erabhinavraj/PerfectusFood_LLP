@@ -1014,7 +1014,7 @@ function placeOrder() {
         Mobile Number: ${mobileNumber}
         Delivery Address: ${deliveryAddress || "N/A"}
         Delivery Option: ${deliveryOption}
-        Ordered On: ${formattedDate} ${formattedTime}   <!-- Added date and time -->
+        Ordered On: ${formattedDate} @ ${formattedTime}
 
         Note: ${deliveryMessage || "You will get your Treat in 20 minutes."}
 
