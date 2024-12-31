@@ -345,21 +345,40 @@ const menuData = [
     colorClass: "text-warning",
     subcategories: {
       Veg: [
-        { name: "Crispy Aloo", price: 79 },
-        { name: "Aloo Tikki Cheese", price: 69 },
-        { name: "Crumbly Paneer Cheese", price: 109 },
-        { name: "Mexican Paneer", price: 109 },
-        { name: "Cheese Paneer", price: 109 },
-        { name: "Spicy Paneer", price: 89 },
-        { name: "Aloo Tikki", price: 49 },
-        { name: "Regular Burger", price: 29 },
+        { name: "🍔Crispy Aloo", price: 79 },
+        { name: "🍔Aloo Tikki Cheese", price: 69 },
+        { name: "🍔Crumbly Paneer Cheese", price: 109 },
+        { name: "🍔Mexican Paneer", price: 109 },
+        { name: "🍔Cheese Paneer", price: 109 },
+        { name: "🍔Spicy Paneer", price: 89 },
+        { name: "🍔Aloo Tikki", price: 49 },
+        { name: "🍔Regular Burger", price: 29 },
       ],
       NonVeg: [
-        { name: "Mexican Chicken", price: 119 },
-        { name: "Cheese Chicken", price: 109 },
-        { name: "Spicy Chicken", price: 89 },
-        { name: "Junior Egg Burger", price: 49 },
-        { name: "Crumbly Chicken Chicken", price: 119 },
+        { name: "🍔Mexican Chicken", price: 119 },
+        { name: "🍔Cheese Chicken", price: 109 },
+        { name: "🍔Spicy Chicken", price: 89 },
+        { name: "🍔Junior Egg Burger", price: 49 },
+        { name: "🍔Crumbly Chicken Chicken", price: 119 },
+      ],
+    },
+  },
+
+  {
+    category: "🌯 Wraps & Rolls",
+    colorClass: "text-warning",
+    subcategories: {
+      Veg: [
+        { name: "🌯Mexican Paneer", price: 109 },
+        { name: "🌯Cheese Paneer", price: 109 },
+        { name: "🌯Spicy Paneer", price: 89 },
+        { name: "🌯Aloo Tikki", price: 49 },
+      ],
+      NonVeg: [
+        { name: "🌯Mexican Chicken", price: 119 },
+        { name: "🌯Cheese Chicken", price: 109 },
+        { name: "🌯Spicy Chicken", price: 89 },
+        { name: "🌯Perfect Egg", price: 59 },
       ],
     },
   },
@@ -405,24 +424,7 @@ const menuData = [
       ],
     },
   },
-  {
-    category: "🌯 Wraps & Rolls",
-    colorClass: "text-warning",
-    subcategories: {
-      Veg: [
-        { name: "Mexican Paneer", price: 109 },
-        { name: "Cheese Paneer", price: 109 },
-        { name: "Spicy Paneer", price: 89 },
-        { name: "Aloo Tikki", price: 49 },
-      ],
-      NonVeg: [
-        { name: "Mexican Chicken", price: 119 },
-        { name: "Cheese Chicken", price: 109 },
-        { name: "Spicy Chicken", price: 89 },
-        { name: "Perfect Egg", price: 59 },
-      ],
-    },
-  },
+ 
   {
     category: "🍚 Rice Specials",
     colorClass: "text-warning",
@@ -1022,7 +1024,7 @@ function placeOrder() {
 
         Thank you for Shopping at perfectusfoods.com
         We hope our food makes your day even better 😊😊😊
-        Wishing you a Merry Christmas and a Happy New Year..!
+        Wishing you a Happy & Prosperous New Year! 🌟🎆✨
     `);
 
   const whatsappURL = `https://wa.me/917250327478?text=${message}`;
