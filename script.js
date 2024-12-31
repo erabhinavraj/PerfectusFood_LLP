@@ -958,8 +958,8 @@ function placeOrder() {
     alert("Coupon code is valid but the minimum cart total for this coupon is ₹200.");
   }
 
-  // Apply XMASNY25 coupon logic with time constraint and fallback to Welcome10
-  else if (couponCode === "XMASNY25" && totalAmount >= 500) {
+  // Apply NEWYEAR25 coupon logic with time constraint and fallback to Welcome10
+  else if (couponCode === "NEWYEAR25" && totalAmount >= 500) {
     // Get the current time (in hours)
     const currentHour = new Date().getHours(); // Returns an integer between 0 and 23
 
@@ -988,7 +988,7 @@ function placeOrder() {
         alert("Coupon code is valid but the minimum cart total for Welcome10 is ₹200.");
       }
     }
-  } else if (couponCode === "XMASNY25" && totalAmount < 500) {
+  } else if (couponCode === "NEWYEAR25" && totalAmount < 500) {
     alert("Coupon code is valid but the minimum cart total for this coupon is ₹500.");
   }
 
