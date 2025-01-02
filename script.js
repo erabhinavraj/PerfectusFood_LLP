@@ -340,26 +340,26 @@ document.addEventListener("DOMContentLoaded", typeAboutUsEffect);
 // Menu Data
 
 const menuData = [
-  {
+   {
     category: "🍔 Burgers",
     colorClass: "text-warning",
     subcategories: {
       Veg: [
-        { name: "🍔Crispy Aloo", price: 79 },
-        { name: "🍔Aloo Tikki Cheese", price: 69 },
-        { name: "🍔Crumbly Paneer Cheese", price: 109 },
-        { name: "🍔Mexican Paneer", price: 109 },
-        { name: "🍔Cheese Paneer", price: 109 },
-        { name: "🍔Spicy Paneer", price: 89 },
-        { name: "🍔Aloo Tikki", price: 49 },
-        { name: "🍔Regular Burger", price: 29 },
+        { name: "Crispy Aloo: B", price: 79 },
+        { name: "Aloo Tikki Cheese: B", price: 69 },
+        { name: "Crumbly Paneer Cheese: B", price: 109 },
+        { name: "Mexican Paneer: B", price: 109 },
+        { name: "Cheese Paneer: B", price: 109 },
+        { name: "Spicy Paneer: B", price: 89 },
+        { name: "Aloo Tikki: B", price: 49 },
+        { name: "Regular Burger: B", price: 29 },
       ],
       NonVeg: [
-        { name: "🍔Mexican Chicken", price: 119 },
-        { name: "🍔Cheese Chicken", price: 109 },
-        { name: "🍔Spicy Chicken", price: 89 },
-        { name: "🍔Junior Egg Burger", price: 49 },
-        { name: "🍔Crumbly Chicken Chicken", price: 119 },
+        { name: "Mexican Chicken: B", price: 119 },
+        { name: "Cheese Chicken: B", price: 109 },
+        { name: "Spicy Chicken: B", price: 89 },
+        { name: "Junior Egg Burger: B", price: 49 },
+        { name: "Crumbly Chicken Chicken: B", price: 119 },
       ],
     },
   },
@@ -369,16 +369,16 @@ const menuData = [
     colorClass: "text-warning",
     subcategories: {
       Veg: [
-        { name: "🌯Mexican Paneer", price: 109 },
-        { name: "🌯Cheese Paneer", price: 109 },
-        { name: "🌯Spicy Paneer", price: 89 },
-        { name: "🌯Aloo Tikki", price: 49 },
+        { name: "Mexican Paneer: W", price: 109 },
+        { name: "Cheese Paneer: W", price: 109 },
+        { name: "Spicy Paneer: W", price: 89 },
+        { name: "Aloo Tikki: W", price: 49 },
       ],
       NonVeg: [
-        { name: "🌯Mexican Chicken", price: 119 },
-        { name: "🌯Cheese Chicken", price: 109 },
-        { name: "🌯Spicy Chicken", price: 89 },
-        { name: "🌯Perfect Egg", price: 59 },
+        { name: "Mexican Chicken: W", price: 119 },
+        { name: "Cheese Chicken: W", price: 109 },
+        { name: "Spicy Chicken: W", price: 89 },
+        { name: "Perfect Egg: W", price: 59 },
       ],
     },
   },
